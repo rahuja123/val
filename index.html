@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Be My Valentine? 💕</title>
+  <style>
+    body { 
+      text-align: center; 
+      font-size: 28px; 
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #ff69b4, #ffb6d9);
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    h1 { color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .container { max-width: 500px; margin: 0 auto; }
+    button { 
+      padding: 15px 30px; 
+      font-size: 20px; 
+      margin: 20px 10px; 
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #yes { 
+      background: #ff1493; 
+      color: white;
+      transition: transform 0.2s;
+    }
+    #yes:hover { transform: scale(1.1); }
+    #no { 
+      position: relative;
+      background: #ccc;
+      color: #333;
+    }
+    .success { display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Will you be my Valentine? 💕</h1>
+    <p>I love you so much...</p>
+    <div id="buttons">
+      <button id="yes">YES! 💕</button>
+      <button id="no">NO</button>
+    </div>
+    <div class="success" id="success">
+      <h1>YAYAYAYA! 🎉💕</h1>
+      <p>Happy Valentine, Mrs Ahuja! 💒</p>
+    </div>
+  </div>
+  
+  <script>
+    const noBtn = document.getElementById('no');
+    const yesBtn = document.getElementById('yes');
+    let clickCount = 0;
+    
+    noBtn.addEventListener('mouseover', () => {
+      const x = Math.random() * window.innerWidth - 100;
+      const y = Math.random() * window.innerHeight - 50;
+      noBtn.style.position = 'fixed';
+      noBtn.style.left = Math.max(0, Math.min(x, window.innerWidth - 100)) + 'px';
+      noBtn.style.top = Math.max(0, Math.min(y, window.innerHeight - 50)) + 'px';
+    });
+    
+    yesBtn.addEventListener('click', () => {
+      document.getElementById('buttons').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+      
+      for(let i = 0; i < 50; i++) {
+        let heart = document.createElement('div');
+        heart.innerHTML = '💕';
+        heart.style.position = 'fixed';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.top = Math.random() * 100 + '%';
+        heart.style.fontSize = Math.random() * 30 + 20 + 'px';
+        document.body.appendChild(heart);
+      }
+    });
+  </script>
+</body>
+</html>
