@@ -39,6 +39,10 @@
       height: auto;
       margin: 20px auto;
     }
+    .youtube-player {
+      max-width: 100%;
+      margin: 20px auto;
+    }
     button { 
       padding: 15px 30px; 
       font-size: 20px; 
@@ -59,33 +63,18 @@
       background: #ccc;
       color: #333;
     }
-    .mute-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 100;
-      background: rgba(255,255,255,0.8);
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      border: none;
-      font-size: 16px;
-    }
     .success { display: none; }
   </style>
 </head>
 <body>
-  <audio id="bgMusic" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_96998da5d9.mp3" type="audio/mpeg">
-  </audio>
-  
-  <button class="mute-btn" id="muteBtn">🎵 Play Music</button>
-  
   <div class="floating-hearts" id="hearts"></div>
   
   <div class="container">
     <img src="https://media.giphy.com/media/x8hq798ONN18Ktv8Mf/giphy.gif" class="bee-gif" alt="bee">
     <h1>Ashu, will you be my valentine? 💕</h1>
+    
+    <iframe class="youtube-player" width="100%" height="200" src="https://www.youtube.com/embed/hWOB5QYcmh0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    
     <div id="buttons">
       <button id="yes">YES! 💕</button>
       <button id="no">NO</button>
@@ -98,24 +87,6 @@
   </div>
   
   <script>
-    const bgMusic = document.getElementById('bgMusic');
-    const muteBtn = document.getElementById('muteBtn');
-    let isPlaying = false;
-    
-    bgMusic.volume = 0.3;
-    
-    muteBtn.addEventListener('click', () => {
-      if(isPlaying) {
-        bgMusic.pause();
-        muteBtn.textContent = '🎵 Play Music';
-        isPlaying = false;
-      } else {
-        bgMusic.play().catch(e => console.log('Autoplay blocked'));
-        muteBtn.textContent = '🔇 Mute';
-        isPlaying = true;
-      }
-    });
-    
     // Create 30 floating hearts
     const heartsContainer = document.getElementById('hearts');
     for(let i = 0; i < 30; i++) {
