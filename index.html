@@ -34,7 +34,7 @@
     }
     .container { max-width: 500px; margin: 0 auto; position: relative; z-index: 2; }
     h1 { color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-    .minion-gif {
+    .bee-gif {
       width: 150px;
       height: auto;
       margin: 20px auto;
@@ -59,32 +59,14 @@
       background: #ccc;
       color: #333;
     }
-    .mute-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 100;
-      background: rgba(255,255,255,0.8);
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      border: none;
-      font-size: 16px;
-    }
     .success { display: none; }
   </style>
 </head>
 <body>
-  <audio id="bgMusic" autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_96998da5d9.mp3" type="audio/mpeg">
-  </audio>
-  
-  <button class="mute-btn" id="muteBtn">🔊 Mute</button>
-  
   <div class="floating-hearts" id="hearts"></div>
   
   <div class="container">
-    <img src="https://media.giphy.com/media/x8hq798ONN18Ktv8Mf/giphy.gif" class="minion-gif" alt="bee">
+    <img src="https://media.giphy.com/media/x8hq798ONN18Ktv8Mf/giphy.gif" class="bee-gif" alt="bee">
     <h1>Ashu, will you be my valentine? 💕</h1>
     <div id="buttons">
       <button id="yes">YES! 💕</button>
@@ -98,21 +80,6 @@
   </div>
   
   <script>
-    const bgMusic = document.getElementById('bgMusic');
-    const muteBtn = document.getElementById('muteBtn');
-    
-    bgMusic.volume = 0.3;
-    
-    muteBtn.addEventListener('click', () => {
-      if(bgMusic.paused) {
-        bgMusic.play();
-        muteBtn.textContent = '🔊 Mute';
-      } else {
-        bgMusic.pause();
-        muteBtn.textContent = '🔇 Unmute';
-      }
-    });
-    
     // Create 30 floating hearts
     const heartsContainer = document.getElementById('hearts');
     for(let i = 0; i < 30; i++) {
