@@ -59,10 +59,28 @@
       background: #ccc;
       color: #333;
     }
+    .mute-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      background: rgba(255,255,255,0.8);
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: none;
+      font-size: 16px;
+    }
     .success { display: none; }
   </style>
 </head>
 <body>
+  <audio id="bgMusic" autoplay loop>
+    <source src="https://assets.mixkit.co/active_storage/musics/570-5f2ee6c6-51f8-47b3-81fb-f20c2a0f532b.mp3" type="audio/mpeg">
+  </audio>
+  
+  <button class="mute-btn" id="muteBtn">🔊 Mute</button>
+  
   <div class="floating-hearts" id="hearts"></div>
   
   <div class="container">
@@ -80,6 +98,21 @@
   </div>
   
   <script>
+    const bgMusic = document.getElementById('bgMusic');
+    const muteBtn = document.getElementById('muteBtn');
+    
+    bgMusic.volume = 0.3;
+    
+    muteBtn.addEventListener('click', () => {
+      if(bgMusic.paused) {
+        bgMusic.play();
+        muteBtn.textContent = '🔊 Mute';
+      } else {
+        bgMusic.pause();
+        muteBtn.textContent = '🔇 Unmute';
+      }
+    });
+    
     // Create 30 floating hearts
     const heartsContainer = document.getElementById('hearts');
     for(let i = 0; i < 30; i++) {
