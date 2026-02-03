@@ -3,6 +3,10 @@
 <head>
   <title>Be My Valentine? 💕</title>
   <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
     body { 
       text-align: center; 
       font-size: 28px; 
@@ -10,9 +14,24 @@
       background: linear-gradient(135deg, #ff69b4, #ffb6d9);
       min-height: 100vh;
       font-family: Arial, sans-serif;
+      overflow-x: hidden;
     }
-    h1 { color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-    .container { max-width: 500px; margin: 0 auto; }
+    .floating-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .heart {
+      position: absolute;
+      font-size: 30px;
+      animation: float 3s ease-in-out infinite;
+    }
+    h1 { color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); position: relative; z-index: 2; }
+    .container { max-width: 500px; margin: 0 auto; position: relative; z-index: 2; }
     button { 
       padding: 15px 30px; 
       font-size: 20px; 
@@ -37,23 +56,36 @@
   </style>
 </head>
 <body>
+  <div class="floating-hearts" id="hearts"></div>
+  
   <div class="container">
-    <h1>Will you be my Valentine? 💕</h1>
-    <p>I love you so much...</p>
+    <h1>Ashu, will you be my valentine? 💕</h1>
     <div id="buttons">
       <button id="yes">YES! 💕</button>
       <button id="no">NO</button>
     </div>
     <div class="success" id="success">
       <h1>YAYAYAYA! 🎉💕</h1>
+      <p>I love you so much...</p>
       <p>Happy Valentine, Mrs Ahuja! 💒</p>
     </div>
   </div>
   
   <script>
+    // Create floating hearts
+    const heartsContainer = document.getElementById('hearts');
+    for(let i = 0; i < 20; i++) {
+      let heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = '💕';
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.top = Math.random() * 100 + '%';
+      heart.style.animationDelay = Math.random() * 3 + 's';
+      heartsContainer.appendChild(heart);
+    }
+    
     const noBtn = document.getElementById('no');
     const yesBtn = document.getElementById('yes');
-    let clickCount = 0;
     
     noBtn.addEventListener('mouseover', () => {
       const x = Math.random() * window.innerWidth - 100;
@@ -61,6 +93,7 @@
       noBtn.style.position = 'fixed';
       noBtn.style.left = Math.max(0, Math.min(x, window.innerWidth - 100)) + 'px';
       noBtn.style.top = Math.max(0, Math.min(y, window.innerHeight - 50)) + 'px';
+      noBtn.style.zIndex = '3';
     });
     
     yesBtn.addEventListener('click', () => {
@@ -74,6 +107,7 @@
         heart.style.left = Math.random() * 100 + '%';
         heart.style.top = Math.random() * 100 + '%';
         heart.style.fontSize = Math.random() * 30 + 20 + 'px';
+        heart.style.zIndex = '10';
         document.body.appendChild(heart);
       }
     });
